@@ -1,0 +1,50 @@
+// Usando o módulo que define a fila (Queue)
+pub struct Queue<T> {
+
+    items: Vec<T>;
+
+}
+
+impl<T> Queue<T> {
+
+    pub fn new() -> Self {
+        Queue {items: Vec::new()}
+    }
+}
+
+    pub fn enqueue(&mut self,  item: T){
+    self.items.push(item);
+}
+
+    pub fn dequeue(&mut self) -> Option<T>{
+        if  self.items.is_empty(){
+        None
+        }else {
+        Some(self.items.remove(0))
+    }
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]{
+    fn test_enqueue_dequeue() {
+        // Criando uma instância da fila
+        let mut queue = Queue::new();
+    
+        // Enfileirando elementos
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+    
+        // Verificando o comportamento FIFO (First In, First Out)
+        assert_eq!(queue.dequeue(), Some(1));
+        assert_eq!(queue.dequeue(), Some(2));
+        assert_eq!(queue.dequeue(), Some(3));
+    
+        // Quando a fila estiver vazia, o próximo dequeue deve retornar None
+        assert_eq!(queue.dequeue(), None);
+       }
+
+    }
+}           
