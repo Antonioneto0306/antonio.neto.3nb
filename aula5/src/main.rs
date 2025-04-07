@@ -56,7 +56,7 @@ impl BST {
             }else if value < node.value{
                 current = &node.left;
             }else {
-                current = &node.right;
+                current = &node.rigth;
             }
         }
 
@@ -71,7 +71,7 @@ fn main() {
     bst.insert(23);
     bst.insert(7);
 
-    print!("10: {}", bst.search(10));
-    print!("10: {}", bst.search(7));
-    print!("10: {}", bst.search(24))
+    println!("10: {}", bst.search(10));
+    println!("7: {}", bst.search(7));
+    println!("24: {}", bst.search(24))
 }
