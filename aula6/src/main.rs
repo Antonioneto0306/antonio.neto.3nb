@@ -7,7 +7,7 @@ struct Graph {
 
 impl Graph {
     fn new() -> Self {
-        Graph{
+        Graph {
             adjacency_lyst: HashMap::new(),
         }
     }
@@ -22,33 +22,33 @@ impl Graph {
     }
 
     fn dfs(&self, start: &str) {
-        let mut visited = Hash::new();
+        let mut visited = HashSet::new();
         println!("DFS");
         self.dfs_recursive(start, &mut visited);
     }
 
-    dn dfs_recursive(&self, vertex: &str, visited: &mut HashSet<String>) {
+    fn dfs_recursive(&self, vertex: &str, visited: &mut HashSet<String>) {
         if visited.contains(vertex) {
             return;
         }
         println!("{}", vertex);
-        visited.insert((vertex.to_string()));
+        visited.insert(vertex.to_string());
 
-        if let Some(neighbors) = sel.adjacency_lyst.get(vertex) {
+        if let Some(neighbors) = self.adjacency_lyst.get(vertex) {
             for neighbor in neighbors {
                 self.dfs_recursive(neighbor, visited);
             }
         }
     }
 
-    fn bfs(&self start: &str) {
+    fn bfs(&self, start: &str) {
         let mut visited = HashSet::new();
         let mut queue = VecDeque::new();
 
         queue.push_back(start.to_string());
         visited.insert(start.to_string());
 
-        println!("BFS")
+        println!("BFS");
 
         while let Some(current) = queue.pop_front() {
             println!("{}", current);
@@ -63,5 +63,24 @@ impl Graph {
             }
         }
     }
+}
+
+fn main() {
+    let mut graph = Graph::new();
+
+    graph.add_vertex("A");
+    graph.add_vertex("B");
+    graph.add_vertex("C");
+    graph.add_vertex("D");
+    graph.add_vertex("E");
+
+    graph.add_edge("A", "B");
+    graph.add_edge("A", "C");
+    graph.add_edge("B", "D");
+    graph.add_edge("C", "E");
+
+    graph.dfs("A");
+    println!("----");
+    graph.bfs("A");
 }
 
